@@ -1,6 +1,6 @@
 import re
-import urllib.request
-import downloader as program
+import urllib
+import core.downloader as program
 
 
 print("Starting...")

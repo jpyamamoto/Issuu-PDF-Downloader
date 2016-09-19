@@ -1,7 +1,7 @@
-import resizer as scale
-import urllib.request
+import core.resizer as scale
+import urllib
 import requests
-import pdf
+import core.pdf as pdf
 
 
 def exists(path):  # Check that image exists
@@ -13,7 +13,7 @@ def downloader(url):
     print('Started download process...')
     files = []  #List to create the PDF
     formatter = url.replace('page_1.jpg', '')
-    changer = 1
+    changer = 116
     while True:
         changer2 = formatter + 'page_' + str(changer) + '.jpg'
         filename = str(changer) + '.jpg'
