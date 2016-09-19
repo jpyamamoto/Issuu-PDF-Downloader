@@ -16,3 +16,5 @@ It will give you the images as well as a PDF.
 You can change the image size in the resize.py file.
 
 In order to change the size of the page of the PDF, you must modify the pdf.py file.
+
+Testing that this works
