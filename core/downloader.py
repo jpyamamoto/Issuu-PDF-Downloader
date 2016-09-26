@@ -13,7 +13,7 @@ def downloader(url):
     print('Started download process...')
     files = []  #List to create the PDF
     formatter = url.replace('page_1.jpg', '')
-    changer = 116
+    changer = 1
     while True:
         changer2 = formatter + 'page_' + str(changer) + '.jpg'
         filename = str(changer) + '.jpg'
