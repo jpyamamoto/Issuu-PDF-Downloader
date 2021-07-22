@@ -1,18 +1,10 @@
 import re
 import urllib
 
-# ----------
-# CONSTANTS
-# ----------
-WIDTH_IMAGE = 1600
-HEIGHT_IMAGE = 750
-WIDTH_PDF = 1100
-HEIGHT_PDF = 900
-NAME_PDF = 'output.pdf'
-
 
 def main():
-    import core.downloader as program
+    import core.downloader as downloader
+    import core.pdf as pdf
 
     print("Starting...\n")
     url = input("Enter the url of the PDF:")
@@ -32,6 +24,19 @@ def main():
         # If the URL points to the entire document, without any page number
         pass
 
+    # Ask user to set pdf size
+    while True:
+        format_size = input(
+            "Enter 1 if the document is in A4 paper size, or 2 if in B4 paper size:")
+        if format_size == "1":
+            pdf_size = {'P': {'w': 210, 'h': 297}, 'L': {'w': 297, 'h': 210}}
+            break
+        elif format_size == "2":
+            pdf_size = {'P': {'w': 250, 'h': 353}, 'L': {'w': 353, 'h': 250}}
+            break
+        else:
+            print("Please enter 1 or 2 as your input.")
+
     url_open1 = str(urllib.request.urlopen(url).read().decode("utf-8"))
 
     # Credits to https://txt2re.com/ for the regex (Almost all of it)
@@ -44,7 +49,8 @@ def main():
     if m:
         httpurl = m.group(1)
         print('Starting from URI: ' + httpurl)
-        program.downloader(httpurl)
+        filelist = downloader.downloader(httpurl)
+        pdf.creator(filelist, pdf_size)
     else:
         print("Error! No image was found")
 
