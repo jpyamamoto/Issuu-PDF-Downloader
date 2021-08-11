@@ -1,18 +1,10 @@
 import re
 import urllib
 
-# ----------
-# CONSTANTS
-# ----------
-WIDTH_IMAGE = 1600
-HEIGHT_IMAGE = 750
-WIDTH_PDF = 1100
-HEIGHT_PDF = 900
-NAME_PDF = 'output.pdf'
-
 
 def main():
-    import core.downloader as program
+    import core.downloader as downloader
+    import core.pdf as pdf
 
     print("Starting...\n")
     url = input("Enter the url of the PDF:")
@@ -44,7 +36,8 @@ def main():
     if m:
         httpurl = m.group(1)
         print('Starting from URI: ' + httpurl)
-        program.downloader(httpurl)
+        filelist = downloader.downloader(httpurl)
+        pdf.creator(filelist)
     else:
         print("Error! No image was found")
 

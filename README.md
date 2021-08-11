@@ -1,4 +1,7 @@
 # Issuu-PDF-Downloader
+
+### IMPORTANT: dependency package *pyfpdf* has obsolete version from pip or conda. Please install from its [project GitHub page](https://github.com/reingart/pyfpdf).
+
 Program on python which downloads Issuu files as PDF
 
 Issuu is a platform which allows users to upload PDF's and protect them from downloading (they didn't count with me)

@@ -1,23 +1,22 @@
 from fpdf import FPDF
-from framework import WIDTH_PDF, HEIGHT_PDF, NAME_PDF
+from PIL import Image
 
-
-pdf = FPDF(unit="pt", format=[WIDTH_PDF, HEIGHT_PDF])
+pdf = FPDF()
 
 
 def creator(pdflist):
     print('Started pdf creation...')
 
-    # Just to make it look cool in the console
-    counter = 1
-    total = len(pdflist)
+    for imageFile in pdflist:
+        cover = Image.open(imageFile)
+        width, height = cover.size
 
-    for image in pdflist:
-        # Add images to file
-        pdf.add_page()
-        pdf.image(image)
-        print('Added image ' + str(counter) + ' of ' + str(total))
-        counter += 1
-    pdf.output(NAME_PDF, "F")
+        # convert pixel in mm with 1px=0.264583 mm
+        width, height = float(width * 0.264583), float(height * 0.264583)
+
+        pdf.add_page(format=(width, height))
+
+        pdf.image(imageFile, 0, 0, width, height)
+    pdf.output("output.pdf", "F")
 
     print('Completed pdf creation...')

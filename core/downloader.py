@@ -1,8 +1,6 @@
-import core.resizer as scale
 import urllib
 import requests
 import core.pdf as pdf
-from framework import WIDTH_IMAGE, HEIGHT_IMAGE
 
 
 def exists(path):
@@ -27,10 +25,6 @@ def downloader(url):
             # Save images
             opener.close()
             print('Correctly saved file ' + filename + ' From URI: ' + changer2)
-            # Resize images
-            scale.scale(filename, WIDTH_IMAGE, HEIGHT_IMAGE)
-            print('Correctly scaled file {}. Width: {}px. Height: {}px.'.format(
-                filename, WIDTH_IMAGE, HEIGHT_IMAGE))
             # Add filename to list, so we make the pdf later
             files.append(filename)
             # Go for the next one
@@ -41,4 +35,4 @@ def downloader(url):
 
     print('Completed download process...')
     # Time to create the pdf
-    pdf.creator(files)
+    return files
